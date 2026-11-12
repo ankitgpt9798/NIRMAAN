@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment files (secrets) - only the .example templates are tracked
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+coverage/
+
+# Uploaded images stored on local disk
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

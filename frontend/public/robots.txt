@@ -1,0 +1,3 @@
+# The price list may be shown in search results; the admin area may not.
+User-agent: *
+Disallow: /admin

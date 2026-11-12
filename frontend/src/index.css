@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens. Muted green (brand) and muted blue (accent) on a light background.
+ * Use classes such as bg-brand-700, text-accent-600, border-brand-200.
+ */
+@theme {
+  /* Built-in fonts only (nothing to download). Latin text uses the system font;
+     Devanagari falls through to the device's Hindi font. */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Devanagari', 'Kohinoor Devanagari',
+    'Nirmala UI', 'Mangal', sans-serif;
+
+  --color-brand-50: #f1f7f3;
+  --color-brand-100: #dcede3;
+  --color-brand-200: #bad9c7;
+  --color-brand-300: #8fbfa3;
+  --color-brand-400: #5f9f7b;
+  --color-brand-500: #3f8461;
+  --color-brand-600: #2f6c4f;
+  --color-brand-700: #265d44;
+  --color-brand-800: #1f4a37;
+  --color-brand-900: #183a2c;
+
+  --color-accent-50: #eff5fb;
+  --color-accent-100: #d9e8f5;
+  --color-accent-200: #b4d0ea;
+  --color-accent-500: #3b78b0;
+  --color-accent-600: #2f6496;
+  --color-accent-700: #28527a;
+
+  /* Customer header and footer palette. Soft white (#F8FAFC), dark slate headings (#1E293B),
+     muted grey text (#64748B) and light grey borders (#E2E8F0) are Tailwind's slate-50/800/500/200. */
+  --color-forest: #173b32; /* primary: shop branding, call button */
+  --color-forest-dark: #0f2a23;
+  --color-forest-50: #eef4f1;
+  --color-construction: #e69a2d; /* accent: icons and highlights (use dark text on it) */
+  --color-construction-50: #fdf4e7;
+  --color-whatsapp: #25d366; /* WhatsApp button (dark text on it for contrast) */
+  --color-whatsapp-dark: #1fb457;
+
+  /* Customer header refinements. */
+  --color-header-top: #f7f8f3; /* top row (language / Admin) */
+  --color-header-admin: #eaf1ed; /* Admin button */
+  --color-header-brand: #174c3a; /* shop name and Call button */
+  --color-header-brand-dark: #113a2c; /* Call button hover */
+  --color-header-muted: #64756c; /* address */
+  --color-header-line: #e5ebe5; /* subtle borders */
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Devanagari needs a little more line height to keep matras readable. */
+  :lang(hi) {
+    line-height: 1.75;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-500;
+  }
+}
+
+/* Printing the QR poster (Admin → QR Code → Print poster): only the poster is
+   printed, filling one A4 page, with its colours kept. */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .qr-print-area,
+  .qr-print-area * {
+    visibility: visible !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .qr-print-area {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
