@@ -4,7 +4,16 @@ A lightweight website for a local building material shop. Customers scan **one p
 
 It is a catalogue only: no cart, no online payment, no customer accounts.
 
-> **Status:** All 9 milestones are complete: the application is built, tested and **ready to deploy**. It has **not** been deployed; see section 14.
+> **Status: live** since 12 November 2026.
+>
+> | | Address |
+> | --- | --- |
+> | Website (what the QR code opens) | <https://ankitbuildingmaterials.vercel.app> |
+> | Admin | <https://ankitbuildingmaterials.vercel.app/admin> |
+> | API (Render) | <https://nirmaan-api-a2vy.onrender.com> (health: `/api/health`) |
+> | Source code | <https://github.com/ankitgpt9798/NIRMAAN> (branch `main`) |
+>
+> See section 14 for how it is hosted and how to update it.
 
 **Contents:** [How it works](#1-how-it-works) · [Technology](#2-technology-stack) · [Structure](#3-project-structure) · [Prerequisites](#4-prerequisites) · [MongoDB Atlas](#5-mongodb-atlas-setup-free) · [Environment variables](#6-environment-variables) · [Install & run](#7-local-installation-and-running) · [Tests](#8-automated-tests) · [Data model](#9-data-model-summary) · [Customer website](#10-customer-website-what-the-qr-code-opens) · [Admin account](#10a-admin-account-and-login) · [Admin dashboard](#11-admin-dashboard-usage) · [Updating prices](#12-how-to-update-product-prices) · [QR code](#13-the-permanent-shop-qr-code) · [Deployment](#14-production-deployment) · [Security](#15-security-notes) · [Troubleshooting](#16-troubleshooting)
 
@@ -524,15 +533,15 @@ While the address is a development one, every download is named `TEST-…` and t
 
 Free-tier hosting: **Vercel** (website), **Render** (API), **MongoDB Atlas** (database, already set up), **Cloudinary** (photos, already set up). No domain or paid plan is needed.
 
-> **Nothing has been deployed yet.** The configuration below is ready; deploying is the shop owner's decision.
+> **Deployed on 12 November 2026:** website <https://ankitbuildingmaterials.vercel.app> (Vercel), API <https://nirmaan-api-a2vy.onrender.com> (Render, service `nirmaan-api`), database `nirmaan` on MongoDB Atlas, photos on Cloudinary. Both hosts deploy from <https://github.com/ankitgpt9798/NIRMAAN> (branch `main`). The steps below are kept as a reference for setting it up again.
 
 ### How the pieces connect
 
 ```
-Customer phone ──QR──► https://your-shop.vercel.app  (Vercel: the React website)
-                              │  fetch https://nirmaan-api.onrender.com/api/...
+Customer phone ──QR──► https://ankitbuildingmaterials.vercel.app  (Vercel: the React website)
+                              │  fetch https://nirmaan-api-a2vy.onrender.com/api/...
                               ▼
-                     https://nirmaan-api.onrender.com  (Render: Express API)
+                     https://nirmaan-api-a2vy.onrender.com  (Render: Express API)
                               ├──► MongoDB Atlas (database "nirmaan")
                               └──► Cloudinary (photos, folder "nirmaan")
 ```
@@ -549,10 +558,10 @@ Customer phone ──QR──► https://your-shop.vercel.app  (Vercel: the Reac
 
 ### Important: Render needs a Git repository
 
-Render deploys **only from a Git repository** (GitHub, GitLab or Bitbucket; it can be **private**). This project has deliberately not been put in any repository. When you decide to deploy:
+Render deploys **only from a Git repository**. This project's repository is <https://github.com/ankitgpt9798/NIRMAAN> (branch `main`); Render and Vercel are connected to it and redeploy automatically after every push.
 
-- **Recommended:** create a **private** repository yourself, push this project to it (`.env` files are git-ignored and stay on your computer; check with `git status` before the first push), then connect it in Render and Vercel. Later updates deploy automatically when you push.
-- **Website without Git:** Vercel can also deploy straight from your computer with its command-line tool (`npx vercel` inside `frontend/`, then `npx vercel --prod`). The API still needs Render (or another host) with a repository.
+- `.env` files are git-ignored and stay on your computer; secrets are entered only in the Render and Vercel dashboards. Check `git status` before each push.
+- The repository is **public** (anyone can read the code, which contains no secrets). It can be made private in GitHub → Settings → Change visibility; Render and Vercel keep working.
 
 The suggested commit messages for each milestone are in `COMMIT_MESSAGES.md`.
 

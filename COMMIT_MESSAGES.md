@@ -435,3 +435,19 @@ style: balance the customer reviews list and form 50/50
 ```
 refactor: remove duplicate description toggle from product cards
 ```
+
+---
+
+## Deployment – live addresses recorded
+
+**Work completed**
+
+- Code pushed to https://github.com/ankitgpt9798/NIRMAAN (branch `main`) on 12 November 2026; deployed by the owner: website https://ankitbuildingmaterials.vercel.app (Vercel), API https://nirmaan-api-a2vy.onrender.com (Render).
+- Live check (read-only) in Edge: 14/14 – Hindi by default, 6 products, all photos from Cloudinary, gallery, reviews, footer, product page, English switch, admin login page; API healthy, database connected, CORS limited to the website; axe-core 0 violations.
+- README updated with the live addresses and repository.
+
+**Commit message used**
+
+```
+docs: record live deployment addresses in README
+```
